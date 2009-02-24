@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<database name="CometChat" defaultIdMethod="native">
+
+ <table name="user" description="User Table">
+  <column name="user_id" type="integer" primaryKey="true" autoIncrement="true" required="true" description="Book Id"/>
+  <column name="userEmail" type="varchar" size="255" required="true" description="User Email adress"/>
+  <column name="userPwd" type="varchar" size="255" required="true" description="User password"/> 
+ </table>
+ 
+</database>
