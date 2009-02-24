@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Comet demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="js/comet2.js">
+        </script>
+        <script type="text/javascript" src="js/jquery.js">
+        </script>
+        <script type="text/javascript" src="Logging/blackbirdjs/blackbird.js">
+        </script>
+        <link type="text/css" rel="Stylesheet" href="Logging/blackbirdjs/blackbird.css" />
+        <link type="text/css" rel="Stylesheet" href="css/chat.css" />
+        <script type="text/javascript">
+            function clearChatArea(){
+				log.info("> clearChatArea()");
+				$('#chatAerea').empty();
+			}
+			
+			function sendMessage(){
+                log.info("> sendMessage()");
+                log.debug("> 	>word ->" + $("#word")[0].value);
+				log.debug("> 	>id ->" + $("#id")[0].value);
+				doRequest($("#id")[0].value, $('#word')[0].value);
+            }
+            
+            $(document).ready(function(){
+                $("input").keypress(function(e){
+                    if (e.which == 13) 
+                        sendMessage();
+                });
+            });
+			
+
+        </script>
+    </head>
+    <body>
+    	<input type="text" name="id" id="id" />
+        <div class="chatAerea" id="chatAerea">
+        </div>
+        <p>
+            <input type="text" name="word" id="word" /><input type="button" name="submit" value="Send" onclick="javascript:sendMessage();"/>
+			<input type="button" name="clearChatAreaButton" value="Clear Chat" onclick="javascript:clearChatArea();"/>
+        </p>
+        <script type="text/javascript">
+            connect();
+        </script>
+    </body>
+</html>
