@@ -20,9 +20,25 @@
 			function sendMessage(){
                 log.info("> sendMessage()");
                 log.debug("> 	>word ->" + $("#word")[0].value);
-				log.debug("> 	>id ->" + $("#id")[0].value);
-				doRequest($("#id")[0].value, $('#word')[0].value);
+				log.debug("> 	>id ->" + $("#userId")[0].value);
+				doRequest($("#userId")[0].value, $('#word')[0].value);
             }
+			
+			function login(email){
+				log.info("> login("+email+")");
+				$.ajax({
+					url: './php/manager/loginManager.php',
+					dataType: "json",
+					data: {
+						'userEmail': email,
+					},
+					success: function(response){
+						log.info("> login()>sucess");
+						log.debug(">	UserId = " + response['userId']);
+						$('#userId')[0].value = response['userId'];
+					}
+				});
+			}
             
             $(document).ready(function(){
                 $("input").keypress(function(e){
@@ -35,7 +51,10 @@
         </script>
     </head>
     <body>
-    	<input type="text" name="id" id="id" />
+    	<input type="text" name="email" id="email" /><input type="button" name="login" value="Login" onclick="javascript:login($('#email')[0].value);"/>
+		
+		
+    	<input type="hidden" name="userId" id="userId" />
         <div class="chatAerea" id="chatAerea">
         </div>
         <p>
