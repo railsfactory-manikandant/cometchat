@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user`
 (
-	`user_id` INTEGER  NOT NULL AUTO_INCREMENT COMMENT 'Book Id',
+	`user_id` INTEGER  NOT NULL AUTO_INCREMENT COMMENT 'User Id',
 	`userEmail` VARCHAR(255)  NOT NULL COMMENT 'User Email adress',
 	`userPwd` VARCHAR(255)  NOT NULL COMMENT 'User password',
 	PRIMARY KEY (`user_id`)

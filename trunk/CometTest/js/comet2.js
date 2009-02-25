@@ -1,7 +1,7 @@
 // JavaScript Document
 
     var timestamp= 0;
-    var url= './backend.php';
+    var url= './php/backend.php';
     var noerror= true;
     var firstTimeStamp= 0;
     var ajax;
@@ -24,8 +24,8 @@
 	  $('#chatAerea').append('<div> ['+time+']'  + response['msg'] + '</div>');
 
 	  //on efface la zone de saisie
-	  log.info("> 	>$('#id')[0].value = " + $("#id")[0].value);
-	  if($("#id")[0].value == senderId)
+	  log.info("> 	>$('#userId')[0].value = " + $("#userId")[0].value);
+	  if($("#userId")[0].value == senderId)
 		  $("#word")[0].value = "";	 
       //document.getElementById("content").innerHTML += '<div> ['+time+']'  + response['msg'] + '</div>';
     }
