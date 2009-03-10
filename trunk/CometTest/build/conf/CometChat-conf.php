@@ -11,7 +11,7 @@ return array_merge_recursive(array (
         'adapter' => 'mysql',
         'connection' => 
         array (
-          'dsn' => 'mysql:host=localhost;dbname=CometChat',
+          'dsn' => 'mysql:host=localhost;port=3308;dbname=CometChat',
           'user' => 'root',
         ),
       ),

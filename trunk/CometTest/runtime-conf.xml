@@ -14,7 +14,7 @@
    <datasource id="CometChat"> <!-- this ID must match <database name=""> in schema.xml -->
     <adapter>mysql</adapter> <!-- sqlite, mysql, myssql, oracle, or pgsql -->
     <connection>
-     <dsn>mysql:host=localhost;dbname=CometChat</dsn> <!-- the PDO connection DSN for database -->
+     <dsn>mysql:host=localhost;port=3308;dbname=CometChat</dsn> <!-- the PDO connection DSN for database -->
      <user>root</user>
 	</connection>
    </datasource>

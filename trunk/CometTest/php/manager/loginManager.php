@@ -1,7 +1,7 @@
 <?php
-  set_include_path("c:/wamp/www/CometChat/build/classes" . PATH_SEPARATOR . get_include_path());
+  //set_include_path("c:/wamp/www/CometChat/build/classes" . PATH_SEPARATOR . get_include_path());
   require_once 'propel/Propel.php';
-  Propel::init("c:/wamp/www/CometChat/build/conf/CometChat-conf.php");
+  Propel::init("../../build/conf/CometChat-conf.php");
 
   require_once('FirePHPCore/FirePHP.class.php');
   include_once 'CometChat/User.php';
@@ -28,6 +28,7 @@
   // return a json array
   $response = array();
   $response['userId']=$user->getUserId();
+  $response['userEmail']=$user->getUserEmail();
   echo json_encode($response);
 
 ?>

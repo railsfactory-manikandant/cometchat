@@ -21,7 +21,7 @@
       var time = response['timestamp']-firstTimeStamp;
 	  var senderId=response['senderId'];
       //on ajoute le texte dans l'aire de Chat 
-	  $('#chatAerea').append('<div> ['+time+']'  + response['msg'] + '</div>');
+	  $('#chatAerea').append('<div> ['+senderId+']'  + response['msg'] + '</div>');
 
 	  //on efface la zone de saisie
 	  log.info("> 	>$('#userId')[0].value = " + $("#userId")[0].value);

@@ -12,6 +12,8 @@
         <link type="text/css" rel="Stylesheet" href="Logging/blackbirdjs/blackbird.css" />
         <link type="text/css" rel="Stylesheet" href="css/chat.css" />
         <script type="text/javascript">
+        	var userId=null;
+			
             function clearChatArea(){
 				log.info("> clearChatArea()");
 				$('#chatAerea').empty();
@@ -36,6 +38,10 @@
 						log.info("> login()>sucess");
 						log.debug(">	UserId = " + response['userId']);
 						$('#userId')[0].value = response['userId'];
+						$('#userEmail')[0].value = response['userEmail'];
+						userId=response['userId'];
+						$('#userId_div').append(response['userId'])
+						$('#userEmail_div').append(response['userEmail']);
 					}
 				});
 			}
@@ -51,17 +57,26 @@
         </script>
     </head>
     <body>
-    	<input type="text" name="email" id="email" /><input type="button" name="login" value="Login" onclick="javascript:login($('#email')[0].value);"/>
+    	<div class="menuBar" name="menuBar">
+			<div class="loginBox" id="loginBox">
+				<input class="loginField" type="text" name="email" id="email" /><input type="button" name="login" value="Login" onclick="javascript:login($('#email')[0].value);"/>    		
+			</div>
+			<input type="hidden" name="userId" id="userId" />
+			<input type="hidden" name="userEmail" id="userEmail" />
+			<div class="userId" id="userId_div"></div>
+			<div class="userEmail" id="userEmail_div"></div>
+		</div>
+		
+    	
 		
 		
-    	<input type="hidden" name="userId" id="userId" />
+    	
         <div class="chatAerea" id="chatAerea">
         </div>
-        <p>
             <input type="text" name="word" id="word" /><input type="button" name="submit" value="Send" onclick="javascript:sendMessage();"/>
 			<input type="button" name="clearChatAreaButton" value="Clear Chat" onclick="javascript:clearChatArea();"/>
-        </p>
-        <script type="text/javascript">
+        
+		<script type="text/javascript">
             connect();
         </script>
     </body>
