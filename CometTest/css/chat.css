@@ -1,5 +1,10 @@
+html{
+	margin:0;
+}
+
 body {
-	
+	background-color:#343434;
+	margin:0;
 }
 
 .chatAerea{
@@ -7,4 +12,31 @@ body {
 	width : 300px;
 	height : 300px;
 	overflow: auto;
+	background-color:#FFFFFF;
+	float:left;
+}
+
+.menuBar{
+	width:100%;
+	background-color:#000000;
+	border-bottom:1px solid #FFFFFF;
+	float:left;
+}
+
+.loginBox{
+	float:left;
+}
+
+.loginField{
+	float:left;
+}
+
+.userId{
+	color:#FFFFFF;
+	float:right;
+}
+
+.userEmail{
+	color:#FFFFFF;
+	float:right;
 }
