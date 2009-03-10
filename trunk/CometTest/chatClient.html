@@ -5,11 +5,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script type="text/javascript" src="js/comet2.js">
         </script>
-        <script type="text/javascript" src="js/jquery.js">
+        <script type="text/javascript" src="js/jquery-1.3.2.js">
         </script>
         <script type="text/javascript" src="Logging/blackbirdjs/blackbird.js">
         </script>
+		<script type="text/javascript" src="js/jquery-ui-1.7.custom.min.js">
+        </script>
+		
         <link type="text/css" rel="Stylesheet" href="Logging/blackbirdjs/blackbird.css" />
+        <link type="text/css" rel="Stylesheet" href="css/ui-darkness/jquery-ui-1.7.custom.css" />
+
         <link type="text/css" rel="Stylesheet" href="css/chat.css" />
         <script type="text/javascript">
         	var userId=null;
@@ -42,6 +47,7 @@
 						userId=response['userId'];
 						$('#userId_div').append(response['userId'])
 						$('#userEmail_div').append(response['userEmail']);
+						$("#dialog").dialog('close');
 					}
 				});
 			}
@@ -53,14 +59,25 @@
                 });
             });
 			
+			$(function() {
+				$("#dialog").dialog({
+				bgiframe: true,
+				height: 140,
+				modal: true,
+				buttons: {
+				'Sign in': function() {
+					login($("#email")[0].value);
+				}
+			}
+
+			});
+			});
+			
 
         </script>
     </head>
     <body>
     	<div class="menuBar" name="menuBar">
-			<div class="loginBox" id="loginBox">
-				<input class="loginField" type="text" name="email" id="email" /><input type="button" name="login" value="Login" onclick="javascript:login($('#email')[0].value);"/>    		
-			</div>
 			<input type="hidden" name="userId" id="userId" />
 			<input type="hidden" name="userEmail" id="userEmail" />
 			<div class="userId" id="userId_div"></div>
@@ -68,7 +85,11 @@
 		</div>
 		
     	
-		
+		<div id="dialog" title="Login">
+			<div class="loginBox" id="loginBox">
+				<input class="loginField" type="text" name="email" id="email" />    		
+			</div>
+		</div>
 		
     	
         <div class="chatAerea" id="chatAerea">
