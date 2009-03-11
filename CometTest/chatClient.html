@@ -31,47 +31,68 @@
 				doRequest($("#userId")[0].value, $('#word')[0].value);
             }
 			
-			function login(email){
-				log.info("> login("+email+")");
+			function login(email,password){
+				log.info("> login("+email+","+password+")");
 				$.ajax({
 					url: './php/manager/loginManager.php',
 					dataType: "json",
 					data: {
 						'userEmail': email,
+						'userPassword': password,
 					},
 					success: function(response){
 						log.info("> login()>sucess");
 						log.debug(">	UserId = " + response['userId']);
-						$('#userId')[0].value = response['userId'];
-						$('#userEmail')[0].value = response['userEmail'];
-						userId=response['userId'];
-						$('#userId_div').append(response['userId'])
-						$('#userEmail_div').append(response['userEmail']);
-						$("#dialog").dialog('close');
+						if (response['userId'] != null) {
+							$('#userId')[0].value = response['userId'];
+							$('#userEmail')[0].value = response['userEmail'];
+							userId = response['userId'];
+							$('#userId_div').append(response['userId'])
+							$('#userEmail_div').append(response['userEmail']);
+							$("#dialog").dialog('close');
+						}else{
+							if(response['message'])
+								$("#messageBox").dialog({
+									bgiframe: true,
+									height: 140,
+									modal: true,
+									close: function(){
+										$(this).dialog('destroy');
+										$("#messageBox").empty();
+									}
+								});
+								$("#messageBox").append(response["message"]);
+								//loadLoginDialog();
+						}
+							
 					}
 				});
 			}
             
+			function loadLoginDialog() {
+				$("#dialog").dialog({
+				bgiframe: true,
+				height: 280,
+				modal: true,
+				buttons: {
+				'Sign in': function() {
+					login($("#email")[0].value,$("#password")[0].value);
+					}
+				}
+
+				});
+			}
+			
             $(document).ready(function(){
-                $("input").keypress(function(e){
+                //Chargement de la fenêtre de login
+				loadLoginDialog();
+				$("input").keypress(function(e){
                     if (e.which == 13) 
                         sendMessage();
                 });
             });
 			
-			$(function() {
-				$("#dialog").dialog({
-				bgiframe: true,
-				height: 140,
-				modal: true,
-				buttons: {
-				'Sign in': function() {
-					login($("#email")[0].value);
-				}
-			}
-
-			});
-			});
+			
 			
 
         </script>
@@ -86,9 +107,17 @@
 		
     	
 		<div id="dialog" title="Login">
-			<div class="loginBox" id="loginBox">
-				<input class="loginField" type="text" name="email" id="email" />    		
-			</div>
+			<!--<div class="loginBox" id="loginBox">-->
+				<form>
+				<fieldset>
+					<label for="email">Email</label><input class="" type="text" name="email" id="email" />
+					<label for="password">Password</label><input class="" type="text" name="password" id="password" />    							
+				</fieldset>
+				</form>
+			<!--</div>-->
+		</div>
+		
+		<div id="messageBox" title="Message">
 		</div>
 		
     	
